@@ -4,7 +4,6 @@ import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointR
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.context.annotation.Configuration;
-
 @Configuration
 public class Config extends WebSecurityConfigurerAdapter {
 
@@ -13,8 +12,8 @@ public class Config extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .requestMatchers(EndpointRequest.to("shutdown")).fullyAuthenticated()
-                .antMatchers("/internal").fullyAuthenticated()
-                .antMatchers("/exposed").permitAll()
+                .antMatchers("/actuator").fullyAuthenticated()
                 .and().httpBasic();
-    }
+
+        }
 }
